@@ -4,8 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     
+    <div class = "selector" id = "selector1">
+        <select id = "selected_primary_value">
+            <option value = "null" selected disabled hidden>Choose a Category</option>
+            <option value = "corners">Corners</option>
+            <option value = "straights">Straights</option>
+            <option value = "tyres">Tyres</option>
+            <option value = "breaks">Breaks</option>
+            <option value = "race_conditions">Race Conditions</option>
+            <option value = "other">Other</option>
+        </select>
+    </div>
+
+    <div class = "selector" id = "selector_corners">
+        <select id = "selected_corners_value">
+        <option value = "null" selected disabled hidden>Choose a Category for Corners</option>
+        <option value = "corner_entry">Corner Entry</option>
+        <option value = "mid_corner">Mid Corner</option>
+        <option value = "corner_exit">Corner Exit</option>
+        </select>
+    </div>
+
+    <div class = "selector" id = "selector_straights">
+        <select id = "selected_straights_value">
+        <option value = "null" selected disabled hidden>Choose a Category for Straights</option>
+        <option value = "low_end">Low End</option>
+        <option value = "top_end">Top End</option>
+        </select>
+    </div>
+
+    <div class = "selector" id = "selector_tyres">
+        <select id = "selected_tyres_value">
+            <option value = "null" selected disabled hidden>Choose a Category for Tyres</option>
+            <option value = "overheating">OverHeating</option>
+            <option value = "overcooling">OverCooling</option>
+            <option value = "overheating_on_inside_edge">OverHeating on Inside Edge</option>
+            <option value = "overheating_on_outside_edge">OverHeating on Outside Edge</option>
+        </select>
+    </div>
+    
+    <div class = "selector" id = "selector_breaks">
+        <select id = "selected_breaks_value">
+            <option value = "Null" selected disabled hidden>Choose a Category for Breaks</option>
+            <option value = "locking">Locking</option>
+            <option value = "unstable">Unstable</option>
+            <option value = "improve__braking_performance"> For Improving Braking Performance</option>
+        </select>
+    </div>
+
+    <script src ="script.js"></script>
 </body>
 </html>
