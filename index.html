@@ -8,7 +8,7 @@
 </head>
 <body>
     
-    <div class = "selector" id = "selector1">
+    <div class = "selectormain" id = "selector1">
         <select id = "selected_primary_value">
             <option value = "null" selected disabled hidden>Choose a Category</option>
             <option value = "corners">Corners</option>
@@ -20,7 +20,7 @@
         </select>
     </div>
 
-    <div class = "selector" id = "selector_corners">
+    <div class = "selector" id = "selector_corners" hidden>
         <select id = "selected_corners_value">
         <option value = "null" selected disabled hidden>Choose a Category for Corners</option>
         <option value = "corner_entry">Corner Entry</option>
@@ -29,7 +29,7 @@
         </select>
     </div>
 
-    <div class = "selector" id = "selector_straights">
+    <div class = "selector" id = "selector_straights" hidden>
         <select id = "selected_straights_value">
         <option value = "null" selected disabled hidden>Choose a Category for Straights</option>
         <option value = "low_end">Low End</option>
@@ -37,7 +37,7 @@
         </select>
     </div>
 
-    <div class = "selector" id = "selector_tyres">
+    <div class = "selector" id = "selector_tyres" hidden>
         <select id = "selected_tyres_value">
             <option value = "null" selected disabled hidden>Choose a Category for Tyres</option>
             <option value = "overheating">OverHeating</option>
@@ -47,15 +47,33 @@
         </select>
     </div>
     
-    <div class = "selector" id = "selector_breaks">
+    <div class = "selector" id = "selector_breaks" hidden>
         <select id = "selected_breaks_value">
-            <option value = "Null" selected disabled hidden>Choose a Category for Breaks</option>
+            <option value = "null" selected disabled hidden>Choose a Category for Breaks</option>
             <option value = "locking">Locking</option>
             <option value = "unstable">Unstable</option>
-            <option value = "improve__braking_performance"> For Improving Braking Performance</option>
+            <option value = "improve__braking_performance">For Improving Braking Performance</option>
         </select>
     </div>
 
-    <script src ="script.js"></script>
+    <div class = "selector" id = "selector_race_conditions" hidden>
+        <select id = "selected_race_conditions_value">
+            <option value = "null" selected disabled hidden>Choose a Category for Race Conditions</option>
+            <option value = "fuel">High Fuel Consumption</option>
+            <option value = "tyres">Tyres</option>
+            <option value = "brakes">Brakes</option>
+        </select>
+    </div>
+
+    <div class = "selector" id = "selector_other" hidden>
+        <select id = "selected_other_value">
+            <option value = "null" selected disabled hidden>Choose a Category for Other Problems</option>
+            <option value = "generally_unstable">Generally Unstable</option>
+            <option value = "excessive_scraping/bottoming_out">Excessive Scraping / Bottoming Out</option>
+            <option value = "uncomfortable_taking_kerbs">Uncomfortable Taking Kerbs</option>
+        </select>
+    </div>
+
+    <script src ="index.js"></script>
 </body>
 </html>

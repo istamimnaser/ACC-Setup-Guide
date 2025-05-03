@@ -1,0 +1,95 @@
+/*
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div class = "selector" id = "selector1">
+        <select id = "selected_primary_value">
+            <option value = "null" selected disabled hidden>Choose a Category</option>
+            <option value = "corners">Corners</option>
+            <option value = "straights">Straights</option>
+            <option value = "tyres">Tyres</option>
+            <option value = "breaks">Breaks</option>
+            <option value = "race_conditions">Race Conditions</option>
+            <option value = "other">Other</option>
+        </select>
+    </div>
+
+    <div class = "selector" id = "selector_corners" hidden>
+        <select id = "selected_corners_value">
+        <option value = "null" selected disabled hidden>Choose a Category for Corners</option>
+        <option value = "corner_entry">Corner Entry</option>
+        <option value = "mid_corner">Mid Corner</option>
+        <option value = "corner_exit">Corner Exit</option>
+        </select>
+    </div>
+
+    <div class = "selector" id = "selector_straights" hidden>
+        <select id = "selected_straights_value">
+        <option value = "null" selected disabled hidden>Choose a Category for Straights</option>
+        <option value = "low_end">Low End</option>
+        <option value = "top_end">Top End</option>
+        </select>
+    </div>
+
+    <div class = "selector" id = "selector_tyres" hidden>
+        <select id = "selected_tyres_value">
+            <option value = "null" selected disabled hidden>Choose a Category for Tyres</option>
+            <option value = "overheating">OverHeating</option>
+            <option value = "overcooling">OverCooling</option>
+            <option value = "overheating_on_inside_edge">OverHeating on Inside Edge</option>
+            <option value = "overheating_on_outside_edge">OverHeating on Outside Edge</option>
+        </select>
+    </div>
+    
+    <div class = "selector" id = "selector_breaks" hidden>
+        <select id = "selected_breaks_value">
+            <option value = "null" selected disabled hidden>Choose a Category for Breaks</option>
+            <option value = "locking">Locking</option>
+            <option value = "unstable">Unstable</option>
+            <option value = "improve__braking_performance">For Improving Braking Performance</option>
+        </select>
+    </div>
+
+    <div class = "selector" id = "selector_race_conditions" hidden>
+        <select id = "selected_race_conditions_value">
+            <option value = "null" selected disabled hidden>Choose a Category for Race Conditions</option>
+            <option value = "fuel">High Fuel Consumption</option>
+            <option value = "tyres">Tyres</option>
+            <option value = "brakes">Brakes</option>
+        </select>
+    </div>
+
+    <div class = "selector" id = "selector_other" hidden>
+        <select id = "selected_other_value">
+            <option value = "null" selected disabled hidden>Choose a Category for Other Problems</option>
+            <option value = "generally_unstable">Generally Unstable</option>
+            <option value = "excessive_scraping/bottoming_out">Excessive Scraping / Bottoming Out</option>
+            <option value = "uncomfortable_taking_kerbs">Uncomfortable Taking Kerbs</option>
+        </select>
+    </div>
+
+    <script src ="script.js"></script>
+</body>
+</html>
+*/
+
+let firstSelect = document.getElementById("selected_primary_value");
+
+firstSelect.addEventListener("change", function() {
+    let selectedValue = firstSelect.value;
+    let newselector = document.getElementById("selector_" + selectedValue);
+    let allselectors = document.getElementsByClassName("selector");
+    for (let i = 0; i < allselectors.length; i++) {
+        allselectors[i].hidden = true;
+    }
+    newselector.hidden = false;
+    newselector.style.display = "flex";
+    newselector.style.flexDirection = "column";
+});
