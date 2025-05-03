@@ -87,9 +87,9 @@ firstSelect.addEventListener("change", function() {
     let newselector = document.getElementById("selector_" + selectedValue);
     let allselectors = document.getElementsByClassName("selector");
     for (let i = 0; i < allselectors.length; i++) {
+        allselectors[i].style.display = "";
         allselectors[i].hidden = true;
     }
     newselector.hidden = false;
     newselector.style.display = "flex";
-    newselector.style.flexDirection = "column";
 });
