@@ -8,8 +8,9 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <button id = "selector1button" onclick = "selector1()" hidden>Look for a new Issue</button>
     
-    <div class = "selector" id = "selector1">
+    <div class = "selectormain" id = "selector1">
         <select id = "selected_primary_value">
             <option value = "null" selected disabled hidden>Choose a Category</option>
             <option value = "corners">Corners</option>
@@ -21,15 +22,58 @@
         </select>
     </div>
 
+
+
+
+    
+    <!--corner start-->
+
     <div class = "selector" id = "selector_corners" hidden>
         <select id = "selected_corners_value">
         <option value = "null" selected disabled hidden>Choose a Category for Corners</option>
         <option value = "corner_entry">Corner Entry</option>
-        <option value = "mid_corner">Mid Corner</option>
+        <option value = "corner_mid">Mid Corner</option>
         <option value = "corner_exit">Corner Exit</option>
+
         </select>
     </div>
 
+    
+    <div class = "selector_secondstep" id = "selector_corners_corner_entry" hidden>
+        <select id = "selected_corners_corner_entry">
+            <option value = "null" selected disabled hidden>Choose an Issue with the Corner Entry</option>
+            <option value = "understeer">Understeer</option>
+            <option value = "oversteer">Oversteer</option>
+            <option value = "unstable">Unstable</option>
+        </select>
+       
+    </div>
+
+    <div class = "selector_secondstep" id = "selector_corners_corner_mid" hidden>
+        <select id = "selected_corners_corner_mid">
+            <option value = "null" selected disabled hidden>Choose an Issue with the Mid Corner</option>
+            <option value = "understeer">Understeer</option>
+            <option value = "oversteer">Oversteer</option>
+            <option value = "unstable">Unstable</option>
+        </select>
+      
+    </div>
+    <div class = "selector_secondstep" id = "selector_corners_corner_exit" hidden>
+        <select id = "selected_corners_corner_exit">
+            <option value = "null" selected disabled hidden>Choose an Issue with the Corner Exit</option>
+            <option value = "understeer">Understeer</option>
+            <option value = "oversteer">Oversteer</option>
+            <option value = "unstable">Unstable</option>
+        </select>
+    </div>
+    
+     <!--corner end-->
+
+
+
+
+
+      <!--straight start--> 
     <div class = "selector" id = "selector_straights" hidden>
         <select id = "selected_straights_value">
         <option value = "null" selected disabled hidden>Choose a Category for Straights</option>
@@ -38,6 +82,29 @@
         </select>
     </div>
 
+    <div class = "selector_secondstep" id = "selector_straights_low_end" hidden>
+        <select id = "selected_straights_low_end_value">
+            <option value = "null" selected disabled hidden>Choose an Issue with the Low End Straights</option>
+            <option value = "slow_acceleration">Slow Acceleration</option>
+            <option value = "wheelspin_at_low_speed">Wheelspin at Low Speed</option>
+        </select>
+    </div>
+
+    <div class = "selector_secondstep" id = "selector_straights_top_end" hidden>
+        <select id = "selected_straights_top_end_value">
+            <option value = "null" selected disabled hidden>Choose an Issue with the Top End Straight</option>
+            <option value = "slow_top_speed">Slow Top Speed</option>
+            <option value = "overly_sensitive_steering">Overly Sensitive Steering</option>
+        </select>
+    </div>
+
+
+
+
+
+
+
+ <!--straight end--> 
     <div class = "selector" id = "selector_tyres" hidden>
         <select id = "selected_tyres_value">
             <option value = "null" selected disabled hidden>Choose a Category for Tyres</option>
@@ -75,12 +142,29 @@
         </select>
     </div>
 
-    <script src ="script.js"></script>
+<div id="screen">
+    <h1 id="track"> smt</h1>
+</div>
+
+    <script src ="index.js"></script>
 </body>
 </html>
 */
 
 let firstSelect = document.getElementById("selected_primary_value");
+
+
+
+function captureDocument() {
+    const doctype = document.doctype ? new XMLSerializer().serializeToString(document.doctype) : '';
+    const htmlContent = document.documentElement.outerHTML;
+    return doctype + '\n' + htmlContent;
+}
+
+//To capture the initial HTML document
+const initialHTML = captureDocument();
+
+
 
 firstSelect.addEventListener("change", function() {
     let selectedValue = firstSelect.value;
@@ -91,5 +175,63 @@ firstSelect.addEventListener("change", function() {
         allselectors[i].hidden = true;
     }
     newselector.hidden = false;
-    newselector.style.display = "flex";
+   
+    document.getElementById("selector1").hidden = true;
+    document.getElementById("selector1button").hidden = false;
 });
+
+
+let cornersSelect = document.getElementById("selected_corners_value");
+cornersSelect.addEventListener("change", function() {
+    let selectedValue = cornersSelect.value;
+    let newselector = document.getElementById("selector_corners_" + selectedValue);
+    let allselectors = document.getElementsByClassName("selector_secondstep");
+    for (let i = 0; i < allselectors.length; i++) {
+        allselectors[i].style.display = "";
+        allselectors[i].hidden = true;
+    }
+    newselector.hidden = false;
+   
+
+    document.getElementById("selector_corners").hidden = true;
+});
+
+let straightsSelect = document.getElementById("selected_straights_value");
+straightsSelect.addEventListener("change", function() {
+    let selectedValue = straightsSelect.value;
+    let newselector = document.getElementById("selector_straights_" + selectedValue);
+    let allselectors = document.getElementsByClassName("selector_secondstep");
+    for (let i = 0; i < allselectors.length; i++) {
+        allselectors[i].style.display = "";
+        allselectors[i].hidden = true;
+    }
+    newselector.hidden = false;
+  
+    document.getElementById("selector_straights").hidden = true;
+});
+
+
+function restoreDocument(htmlString) {
+    document.open();
+    document.write(htmlString);
+    document.close();
+}
+
+
+function selector1() {
+    location.reload();
+}
+
+/*function selector2() {
+    document.getElementById("selector2button").hidden = true;
+    let allselectors = document.getElementsByClassName("selector");
+    for (let i = 0; i < allselectors.length; i++) {
+        allselectors[i].style.display = "";
+        allselectors[i].hidden = true;
+    }
+    let allselectors2 = document.getElementsByClassName("selector_secondstep");
+    for (let i = 0; i < allselectors2.length; i++) {
+        allselectors2[i].style.display = "";
+        allselectors2[i].hidden = true;
+    }
+}*/
