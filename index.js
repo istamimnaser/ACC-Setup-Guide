@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <button id = "selector1button" onclick = "selector1()" hidden>Look for a new Issue</button>
+    <button id = "resetbutton" onclick = "selector1()" hidden>Look for a new Issue</button>
     
     <div class = "selectormain" id = "selector1">
         <select id = "selected_primary_value">
@@ -177,7 +177,7 @@ firstSelect.addEventListener("change", function() {
     newselector.hidden = false;
    
     document.getElementById("selector1").hidden = true;
-    document.getElementById("selector1button").hidden = false;
+    document.getElementById("resetbutton").hidden = false;
 });
 
 
@@ -218,7 +218,7 @@ function restoreDocument(htmlString) {
 }
 
 
-function selector1() {
+function resetpage() {
     location.reload();
 }
 
