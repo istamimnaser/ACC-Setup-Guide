@@ -131,7 +131,22 @@ const categories = {
     //Tyres
 
     overheating:{
-        solutions: []
+        solutions: {
+            tyres: [
+                "Increase Tyre Pressures",
+                "Less Toe <b>(closer to 0)</b>",
+                "Less Caster"
+            ], 
+            mechanical_grip: [
+                "Move Brake Bias Front or Back"
+            ],
+            electronics: [
+                "Increase Traction Control"
+            ],
+            aero:[
+                "Increase Brake Ducts"
+            ]
+        }
     }, 
     overcooling:{
         solutions: []
