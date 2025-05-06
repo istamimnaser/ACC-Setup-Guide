@@ -338,7 +338,7 @@ const categories = {
     corner_entry_oversteer: {
         solutions: {
             tyres:[
-                "Reduce Rear Tyre Pressures",
+                "Reduce Rear Tyre Pressures",   
                 "Less Front Toe Out <small style=\"color: orange\">(positive increase)</small>",
                 "More Rear Camber <small style=\"color: orange\">(negative increase)</small>",
                 "Less Front ANtiroll bar <small style=\"color: orange\">OR</small> more Rear Antiroll bar"
