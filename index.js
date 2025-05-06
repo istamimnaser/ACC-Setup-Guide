@@ -42,7 +42,7 @@ let resetbtn = document.getElementById('resetbutton');
 let primaryslct = document.getElementById('primary_selection');
 let second_container = document.getElementById('second_container');
 let solution_container = document.getElementById('solution_container');
-
+let flowchart = [];
 
 
 const categories = {
@@ -76,9 +76,9 @@ const categories = {
     },
     race_conditions:{
         options:[
-            {value: "r_fuel", text: "Fuel: High Fuel Consumption"},
-            {value: "r_tyres", text: "Tyres"},
-            {value: "r_breaks", text: "Breaks"},
+            {value: "race_condition_fuel", text: "Fuel: High Fuel Consumption"},
+            {value: "race_condition_tyres", text: "Tyres"},
+            {value: "race_condition_breaks", text: "Breaks"},
         ]
     },
     other:{
@@ -134,7 +134,7 @@ const categories = {
         solutions: {
             tyres: [
                 "Increase Tyre Pressures",
-                "Less Toe <b>(closer to 0)</b>",
+                "Less Toe <small style=\"color: orange\">(closer to 0)</small>",
                 "Less Caster"
             ], 
             mechanical_grip: [
@@ -149,39 +149,112 @@ const categories = {
         }
     }, 
     overcooling:{
-        solutions: []
+        solutions: {
+            tyres: [
+                "Reduce Tyre Pressures",
+                "More Toe"                
+            ], 
+            electronics: [
+                "Decrease Traction Control"
+            ],
+            mechanical_grip: [
+                "Move Brake Bias Front or Back"
+            ],
+            aero:[
+                "Reduce Brake Ducts"
+            ]
+        }
     },
     overheating_on_inside_edge:{
-        solutions: []
+        solutions: {
+            tyres: [
+                "Reduce Tyre Pressures",
+                "Less Toe <small style=\"color: orange\">(closer to 0)</small>"
+            ]
+        }
     },
     overheating_on_outside_edge:{
-        solutions: []
+        solutions: {
+            tyres: [
+                "Increase Tyre Pressures",
+                "Less Toe <small style=\"color: orange\">(closer to 0)</small>",
+                "More Camber"
+            ]
+        }
     },
 
     //Breaks
     locking:{
-        solutions: []
+        solutions: {
+            electronics: [
+                "Increase ABS"
+            ],
+            mechanical_grip: [
+                "Reduce Braking Power <small style=\"color: orange\">(not advised)</small>",
+                "Move Brake Bias Away from locking wheels"
+            ],
+        }
     },
 
     unstable:{
-        solutions: []
+        solutions: {
+            tyres: [
+                "Less Toe <small style=\"color: orange\">(closer to 0)</small>",
+            ], 
+            dampers:[
+                "Reduce Bump"
+            ],
+            electronics: [
+                "Increase ABS",
+            ],
+            mechanical_grip: [
+                "Reduce Braking Power <small style=\"color: orange\">(not advised)</small>",
+                "Move Brake Bias Front"
+            ],
+            aero:[
+                "Increase Rear Wing",
+                "Increase Front Splitter"
+            ]
+        }
     },
     improve_breaking_performance:{
-        solutions: []
+        solutions: {
+            electronics: [
+                "Decrease ABS",
+                "Use \"Pads 4\""
+            ],
+            mechanical_grip: [
+                "Increase Braking Power to Maximum"
+            ],
+            aero:[
+                "Increase Rear Wing",
+                "Increase Front Splitter"
+            ]
+        }
     },
 
     //RaceConditions
-    r_fuel:{
-        solutions: []
+    race_condition_fuel:{
+        solutions: {
+            tyres: [
+                "Increase Tyre Pressure"
+            ], 
+            electronics: [
+                "Decrease ECU Mapping"
+            ],
+            aero:[
+                "Decrease Wing"
+            ]
+        }
     },
-    r_tyres:{
+    race_condition_tyres:{
         options: [
             {value: "tempatures_rising", text: "Tyre Temperatures Rising"},
             {value: "tempatures_falling", text: "Tyre Temperatures Falling"},
             {value: "excessive_tyre_degradation", text: "Excessive Tyre Degradation"},
         ]
     },
-    r_breaks:{
+    race_condition_breaks:{
         options:[
             {value: "excessive_break_wear", text: "Excessive Break Wear"},
             {value: "excessive_break_temperature", text: "Excessive Break Temperature"},
@@ -190,21 +263,102 @@ const categories = {
 
     //Other
     generally_unstable:{
-        solutions: []
+        solutions: {
+            tyres: [
+                "Reduce Tyre Pressures"
+            ], 
+            dampers:[
+                "Reduce Fast Bump",
+                "Reduce Fast Rebound"
+            ],
+            electronics: [
+                "Increase Traction Control"
+            ],
+            mechanical_grip: [
+                "Decrease Bumpstop Rate",
+                "Increase Bumpstop Range"
+            ],
+            aero:[
+              "Reduce Ride Height",
+              "Increase Rear Wing",
+              "Increase Front Splitter"  
+            ]
+        }
     },
     excessive_scraping_bottoming_out:{
-        solutions: []
+        solutions: {
+            mechanical_grip: [
+                "Increase Wheel Rate",
+                "Increase Bumpstop Rate",
+                "Increase Bumbstop Range"
+            ],
+            aero:[
+                "Increase Ride Height"
+            ]
+        }
     },
     uncomfortable_taking_kerbs:{
-        solutions: []
+        solutions: {
+            mechanical_grip: [
+                "Reduce Wheel Rate",
+                "Decrease Bumpstop Rate",
+                "Increase Bumpstop Range"
+            ],
+            dampers:[
+                "Reduce Fast Bump",
+                "Reduce Fast Rebound"
+            ]
+        }
     },
 
     //corner_entry
     corner_entry_understeer: {
-        solutions: []
+        solutions: {
+            tyres: [
+                "Reduce Front Tyre Pressures",
+                "More Tow Out <small style=\"color: orange\">(negative decrease)</small>",
+                "More Front Camber <small style=\"color: orange\">(negative increase)</small>",
+                "More Caster"
+            ],
+            mechanical_grip: [
+                "Less Front Antiroll bar <small style=\"color: orange\">OR</small> more Rear Antiroll bar",
+                "Move Brake Bias Rearward",
+                "Reduce Wheel Rate Front",
+                "Increase Differential Preload"
+            ],
+            dampers:[
+                "Increase Front Bump",
+                "Increase Front Rebound"
+            ],
+            aero: [
+                "Reduce Front Ride Height <small style=\"color: orange\">OR</small> Increased Rear Ride Height"
+            ]
+        }
     },
     corner_entry_oversteer: {
-        solutions: []
+        solutions: {
+            tyres:[
+                "Reduce Rear Tyre Pressures",
+                "Less Front Toe Out <small style=\"color: orange\">(positive increase)</small>",
+                "More Rear Camber <small style=\"color: orange\">(negative increase)</small>",
+                "Less Front ANtiroll bar <small style=\"color: orange\">OR</small> more Rear Antiroll bar"
+            ],
+            electronics:[
+                "Increased Traction Control"
+            ],
+            mechanical_grip:[
+                "Reduce Wheel Rate Rear <small style=\"color: orange\">OR</small> Increase Wheel Rate Front",
+                "Move Brake Bias Forward",
+                "Decrease Preload Differential"
+            ],
+            dampers:[
+                "Reduce Rear Bump",
+                "Reduce Rear Rebound"
+            ],
+            aero:[
+                "Reduce Front Ride Height <small style=\"color: orange\">OR</small> Increased Rear Ride Height"
+            ]
+        }
     },
     corner_entry_unstable: {
         solutions: []
@@ -259,7 +413,7 @@ const categories = {
         solutions: []
     },
 
-    //r_breaks
+    //race_condition_breaks
     excessive_break_wear: {
         solutions: []
     },
@@ -272,9 +426,9 @@ const categories = {
 function createSelectElement(category) {
     const categoryData = categories[category];
     if (!categoryData) return '';
-
+    
     let selectHTML = `<select id="secondery_selections">
-        <option value="null" selected disabled hidden>Choose a Category</option>`; //The null option is a placeholder for the user to select a category.
+        <option value="null" selected disabled hidden>Choose a Category from ${valuetotext(category)}</option>`; //The null option is a placeholder for the user to select a category.
 
     categoryData.options.forEach((option) => {
         selectHTML += `<option value="${option.value}">${option.text}</option>`;
@@ -287,6 +441,8 @@ function createSelectElement(category) {
 primaryslct.addEventListener('change', function () {
     let value = primaryslct.value;
     second_container.innerHTML = ''; // Clear previous content
+
+    flowchart.push(valuetotext(value));
 
     if (categories[value]) {
         second_container.innerHTML = createSelectElement(value);
@@ -304,10 +460,12 @@ second_container.addEventListener('change', function (event) {
     if (event.target && event.target.id === 'secondery_selections') {
         let value = event.target.value;
         solution_container.innerHTML = ''; // Clear previous content
+        flowchart.push(valuetotext(value));
 
         if (categories[value]['solutions']) {
-            solution_container.innerHTML = "There is a solution for this issue";
+            solution_container.innerHTML = `<p>${createflow(flowchart)}</p>There is a solution for this issue`;
             solution_container.hidden = false;
+            second_container.hidden = true;
             console.log("Solution found!");
         } else if (categories[value]['options']) {
             second_container.innerHTML = createSelectElement(value);
@@ -329,4 +487,24 @@ function resetpage() {
     second_container.innerHTML = '';
     solution_container.innerHTML = '';
     solution_container.hidden = true;
+    flowchart = [];
+}
+
+function valuetotext(value){
+    const capitalizedWords = value.split("_").map(word => {
+        return word.charAt(0).toUpperCase() + word.slice(1);
+      });
+      
+    const text = capitalizedWords.join(" ");
+    return text;
+}
+
+function createflow(flowchart){
+    let output = "";
+    for (let i = 0; i < flowchart.length; i++) {
+        if (i != 0) output += " 🡪 ";
+        output += `${flowchart[i]}`
+    }
+
+    return output;
 }
