@@ -184,6 +184,73 @@ const categories = {
         solutions: []
     },
 
+    //corner_entry
+    corner_entry_understeer: {
+        solutions: []
+    },
+    corner_entry_oversteer: {
+        solutions: []
+    },
+    corner_entry_unstable: {
+        solutions: []
+    },
+
+    //corner_mid
+    corner_mid_understeer: {
+        solutions: []
+    },
+    corner_mid_oversteer: {
+        solutions: []
+    },
+    corner_mid_unstable: {
+        solutions: []
+    },
+
+    //corner_exit
+    corner_exit_understeer: {
+        solutions: []
+    },
+    corner_exit_oversteer: {
+        solutions: []
+    },
+    corner_exit_unstable: {
+        solutions: []
+    },
+
+    //low_end
+    slow_acceleration: {
+        solutions: []
+    },
+    wheelspin_at_low_speed: {
+        solutions: []
+    },
+
+    //top_end
+    slow_top_speed: {
+        solutions: []
+    },
+    overly_sensitive_steering: {
+        solutions: []
+    },
+
+    //r_tyres
+    tempatures_rising: {
+        solutions: []
+    },
+    tempatures_falling: {
+        solutions: []
+    },
+    excessive_tyre_degradation: {
+        solutions: []
+    },
+
+    //r_breaks
+    excessive_break_wear: {
+        solutions: []
+    },
+    excessive_break_temperature: {
+        solutions: []
+    },
 };
 
 
@@ -245,4 +312,6 @@ function resetpage() {
     resetbtn.hidden = true;
     primaryslct.value = "null";
     second_container.innerHTML = '';
+    solution_container.innerHTML = '';
+    solution_container.hidden = true;
 }
