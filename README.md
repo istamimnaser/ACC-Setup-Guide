@@ -21,11 +21,7 @@ Inspired by common setup flowcharts, this tool aims to provide a user-friendly a
 
 ## 📸 Screenshots
 
-*(It's highly recommended to add a screenshot or a GIF here showing the tool in action. For example:)*
-
-*A GIF showing the selection process and solution display would be ideal.*
-
-**Example Screenshot:**
+**Screenshot:**
 ![Screenshot of ACC Setup Guide interface](ACC_SS.png)
 
 ## 🚀 How to Use
