@@ -1,42 +1,3 @@
-/*
-<!DOCTYPE html>
-<html lang=`en`>
-<head>
-    <meta charset=`UTF-8`>
-    <meta name=`viewport` content=`width=device-width, initial-scale=1.0`>
-    <title>Document</title>
-    <link rel = `stylesheet` href=`style.css`>
-</head>
-<body>
-    
-    <div id = `first_container`>
-
-        <button id = `resetbutton` onclick = `resetpage()` hidden>Look for a new Issue</button>
-
-        <select id = `primary_selection`>
-            <option value = `null` selected disabled hidden>Choose a Category</option>
-            <option value = `corners`>Corners</option>
-            <option value = `straights`>Straights</option>
-            <option value = `tyres`>Tyres</option>
-            <option value = `breaks`>Breaks</option>
-            <option value = `race_conditions`>Race Conditions</option>
-            <option value = `other`>Other</option>
-        </select>
-    </div>
-
-    <div id = `second_container` hidden>
-    </div>
-
-    <div id = `solution_container` hidden>
-
-    </div>
-
-    
-    <script src=`index.js`></script>
-</body>
-</html>*/
-
-
 
 let resetbtn = document.getElementById('resetbutton');
 let primaryslct = document.getElementById('primary_selection');
@@ -538,7 +499,7 @@ const categories = {
         solutions: {
             tyres: [
               `Reduce Rear Tyre Pressures`,
-              `Reduce Rear Camber (close to 0)`
+              `Reduce Rear Camber <small style=\"color: ${sidenote_color}\">(close to 0)</small>`
             ],
             electronics: [
               `Increase Traction Control`
