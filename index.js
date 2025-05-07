@@ -649,12 +649,18 @@ const categories = {
 };
 
 
-function createSelectElement(category) {
-    const categoryData = categories[category];
-    if (!categoryData) return '';
-    
-    let selectHTML = `<select id="secondery_selections">
-        <option value="null" selected disabled hidden>Choose a Category from ${valuetotext(category)}</option>`; //The null option is a placeholder for the user to select a category.
+function createSelectElement(categoryKey, selectId = "secondary_selections") {
+    const categoryData = categories[categoryKey];
+    if (!categoryData || !categoryData.options) {
+        console.error(`No options found for category: ${categoryKey}`);
+        return '<p class="text-red-400">Error: Configuration issue for this selection.</p>';
+    }
+
+    // Capitalize the first letter of categoryKey for display
+    const displayName = categoryKey.charAt(0).toUpperCase() + categoryKey.slice(1).replace(/_/g, ' ');
+
+    let selectHTML = `<select id="${selectId}" class="bg-gray-700 border border-gray-600 text-gray-200 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 mt-2">
+        <option value="null" selected disabled hidden>Choose from ${valuetotext(categoryKey)}...</option>`;
 
     categoryData.options.forEach((option) => {
         selectHTML += `<option value="${option.value}">${option.text}</option>`;
@@ -664,89 +670,173 @@ function createSelectElement(category) {
     return selectHTML;
 }
 
+/**
+ * Handles changes in the primary selection dropdown.
+ * Populates the secondary selection container based on the primary choice.
+ */
 primaryslct.addEventListener('change', function () {
     let value = primaryslct.value;
     second_container.innerHTML = ''; // Clear previous content
+    solution_container.innerHTML = ''; // Clear solutions
+    solution_container.hidden = true;
+    flowchart = []; // Reset flowchart
 
-    flowchart.push(valuetotext(value));
+    if (value === "null") {
+        second_container.hidden = true;
+        resetbtn.hidden = true;
+        primaryslct.hidden = false;
+        return;
+    }
 
-    if (categories[value]) {
-        second_container.innerHTML = createSelectElement(value);
+    flowchart.push(valuetotext(primaryslct.options[primaryslct.selectedIndex].text)); // Use selected option's text
+
+    if (categories[value] && categories[value].options) {
+        second_container.innerHTML = createSelectElement(value, "secondary_selection_1");
         second_container.hidden = false;
+        second_container.style.animation = "fadeIn 0.5s ease-in-out";
         primaryslct.hidden = true;
         resetbtn.hidden = false;
-    } else {
+    } else if (categories[value] && categories[value].solutions) { // Direct to solution from primary
+        solution_container.innerHTML = `<p class="flowchart-path">${createflow(flowchart)}</p>`;
+        solution_container.innerHTML += printSolutions(value);
+        solution_container.hidden = false;
+        solution_container.style.animation = "fadeIn 0.5s ease-in-out";
+        primaryslct.hidden = true;
         second_container.hidden = true;
+        resetbtn.hidden = false;
+    } else {
+        second_container.innerHTML = '<p class="text-red-400">No further options or solutions for this category.</p>';
+        second_container.hidden = false;
+        second_container.style.animation = "fadeIn 0.5s ease-in-out";
+        primaryslct.hidden = true;
+        resetbtn.hidden = false;
     }
 });
 
-let secondery_selections = document.getElementById('secondery_selections');
-
+/**
+ * Handles changes in dynamically created select elements within the second_container.
+ * This function is delegated to the second_container.
+ */
 second_container.addEventListener('change', function (event) {
-    if (event.target && event.target.id === 'secondery_selections') {
+    // Check if the event target is a select element we're interested in
+    if (event.target && event.target.tagName === 'SELECT') {
         let value = event.target.value;
-        solution_container.innerHTML = ''; // Clear previous content
-        flowchart.push(valuetotext(value));
+        solution_container.innerHTML = ''; // Clear previous solution content
 
-        if (categories[value]['solutions']) {
-            solution_container.innerHTML = `<p>${createflow(flowchart)}</p>`;
-            solution_container.hidden = false;
-            resetbtn.hidden = false;
-            second_container.hidden = true;
+        if (value === "null") return; // Do nothing if the placeholder is selected
+
+        // Add current selection to flowchart using the option's display text
+        const selectedOptionText = event.target.options[event.target.selectedIndex].text;
+        flowchart.push(selectedOptionText);
+
+
+        if (categories[value] && categories[value].solutions) {
+            // Display solutions
+            solution_container.innerHTML = `<p class="flowchart-path">${createflow(flowchart)}</p>`;
             solution_container.innerHTML += printSolutions(value);
-
-        } else if (categories[value]['options']) {
-            second_container.innerHTML = createSelectElement(value);
+            solution_container.hidden = false;
+            solution_container.style.animation = "fadeIn 0.5s ease-in-out";
+            second_container.hidden = true; // Hide current select container
+            resetbtn.hidden = false; // Ensure reset button is visible
+        } else if (categories[value] && categories[value].options) {
+            // Create and display the next select element
+            // To allow for multiple levels of selects, we generate a unique ID for the next select
+            const nextSelectId = `secondary_selection_${flowchart.length}`;
+            second_container.innerHTML = createSelectElement(value, nextSelectId); // Replace current select with new one
             second_container.hidden = false;
+            second_container.style.animation = "fadeIn 0.5s ease-in-out";
             resetbtn.hidden = false;
         } else {
-            solution_container.hidden = true;
+            // No further options or solutions
+            solution_container.innerHTML = `<p class="flowchart-path">${createflow(flowchart)}</p><p class="text-yellow-400">No specific solutions defined for this path yet.</p>`;
+            solution_container.hidden = false;
+            solution_container.style.animation = "fadeIn 0.5s ease-in-out";
+            second_container.hidden = true;
+            resetbtn.hidden = false;
         }
     }
 });
 
 
-
+/**
+ * Resets the page to its initial state.
+ * Hides secondary and solution containers, shows primary selection.
+ */
 function resetpage() {
     primaryslct.hidden = false;
     second_container.hidden = true;
-    resetbtn.hidden = true;
-    primaryslct.value = `null`;
-    second_container.innerHTML = '';
-    solution_container.innerHTML = '';
     solution_container.hidden = true;
-    flowchart = [];
+    resetbtn.hidden = true;
+    primaryslct.value = `null`; // Reset dropdown to default
+    second_container.innerHTML = ''; // Clear dynamic content
+    solution_container.innerHTML = ''; // Clear solutions
+    flowchart = []; // Clear the flowchart path
 }
 
-function valuetotext(value){
+/**
+ * Converts a snake_case string to Title Case Text.
+ * @param {string} value - The string to convert.
+ * @returns {string} The converted Title Case string.
+ */
+function valuetotext(value) {
+    if (typeof value !== 'string') return '';
     const capitalizedWords = value.split(`_`).map(word => {
-        return word.charAt(0).toUpperCase() + word.slice(1);
-      });
-      
-    const text = capitalizedWords.join(` `);
-    return text;
+        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    });
+    return capitalizedWords.join(` `);
 }
 
-function createflow(flowchart){
-    let output = ``;
-    for (let i = 0; i < flowchart.length; i++) {
-        if (i != 0) output += ` 🡪 `;
-        output += `${flowchart[i]}`
-    }
-
-    return output;
+/**
+ * Creates a string representing the flowchart path.
+ * @param {Array<string>} flowchartArray - Array of selected steps.
+ * @returns {string} A string like "Step 1 🡪 Step 2 🡪 Step 3".
+ */
+function createflow(flowchartArray) {
+    // Use a more distinct arrow and ensure proper spacing for readability
+    return flowchartArray.join(` <span class="text-blue-400 font-semibold mx-1">&raquo;</span> `);
 }
 
-function printSolutions(value){
-    let solutions = categories[value]['solutions'];
-    let output = ``;
-    //print different solution category in different div element
-    for (let category in solutions) {
-        output += `<div class="solution-category"><h3>${valuetotext(category)}</h3><ul>`;
-        solutions[category].forEach(solution => {
-            output += `<li>${solution}</li>`;
+/**
+ * Generates HTML string for displaying solutions for a given category value.
+ * @param {string} value - The key of the category in the `categories` object that has solutions.
+ * @returns {string} HTML string of categorized solutions.
+ */
+function printSolutions(value) {
+    const categorySolutions = categories[value]['solutions'];
+    if (!categorySolutions) return '<p class="text-yellow-400">No solutions available for this selection.</p>';
+
+    // Defines the mapping of solution category keys to their respective icon image paths.
+    // Ensure these paths are correct and the 'icons' folder is in the same directory as your HTML file.
+    // The key for mechanical_grip assumes the image file is named mechanical_grip.png
+    const iconMap = {
+        'tyres': 'icons/tyres.png',
+        'mechanical_grip': 'icons/mechanical_grip.png',
+        'aero': 'icons/aero.png',
+        'electronics': 'icons/electronics.png',
+        'dampers': 'icons/damper.png',
+        'fuel': 'icons/fuel.png'
+        // Categories without a direct icon in the provided image (e.g., 'gearing', 'driving_style') will not display an icon.
+    };
+
+    let output = `<div class="solutions-grid grid gap-4 md:grid-cols-2 lg:grid-cols-1">`; // Changed to lg:grid-cols-1 for better display with icons
+
+    for (let categoryNameKey in categorySolutions) {
+        const iconSrc = iconMap[categoryNameKey]; // Direct lookup using the key
+        // Conditionally create the image tag if an icon source exists for the category
+        // Icon size changed from h-6 w-6 to h-5 w-5
+        const iconHTML = iconSrc? `<img src="${iconSrc}" alt="${valuetotext(categoryNameKey)} icon" style="width: 20px; height: 20px;" class="solution-category-icon mr-1 inline-block">`: '';
+
+        output += `<div class="solution-category-item bg-gray-700 p-4 rounded-lg shadow"> 
+                    <h3 class="text-lg font-semibold text-green-400 mb-2 border-b border-gray-600 pb-1 flex items-center">
+                        ${iconHTML}
+                        <span class="flex-grow">${valuetotext(categoryNameKey)}</span>
+                    </h3>
+                    <ul class="list-disc list-inside space-y-1 text-gray-300 pl-2">`; // Added pl-2 for better alignment of list items
+        categorySolutions[categoryNameKey].forEach(solution => {
+            output += `<li class="text-sm">${solution}</li>`; 
         });
         output += `</ul></div>`;
     }
+    output += `</div>`;
     return output;
 }

@@ -7,30 +7,40 @@
     <link rel = "stylesheet" href="style.css">
 </head>
 <body>
-    
-    <div id = "first_container">
-
-        <button id = "resetbutton" onclick = "resetpage()" hidden>Look for a new Issue</button>
-
-        <select id = "primary_selection">
-            <option value = "null" selected disabled hidden>Choose a Category</option>
-            <option value = "corners">Corners</option>
-            <option value = "straights">Straights</option>
-            <option value = "tyres">Tyres</option>
-            <option value = "breaks">Breaks</option>
-            <option value = "race_conditions">Race Conditions</option>
-            <option value = "other">Other</option>
-        </select>
-    </div>
-
-    <div id = "second_container" hidden>
-    </div>
-
-    <div id = "solution_container" hidden>
+    <header>
         
-    </div>
+            <div id="Logo"> <img src="icons/AGR_logo_v3.png" alt=""></div>
+            <div id="fuelcalc"> <a href="https://istamimnaser.github.io/accfuel.github.io/">Fuel Calculator</a></div>
+         
+       
+    </header>
+    <div>
+        <h1 id="title">ACC Setup Guide</h1>
 
+        <div id = "first_container">
     
+            <button id = "resetbutton" onclick = "resetpage()" hidden>Look for a new Issue</button>
+    
+            <select id = "primary_selection">
+                <option value = "null" selected disabled hidden>Choose a Category</option>
+                <option value = "corners">Corners</option>
+                <option value = "straights">Straights</option>
+                <option value = "tyres">Tyres</option>
+                <option value = "breaks">Breaks</option>
+                <option value = "race_conditions">Race Conditions</option>
+                <option value = "other">Other</option>
+            </select>
+        </div>
+    
+        <div id = "second_container" hidden>
+        </div>
+    
+        <div id = "solution_container" hidden>
+            
+        </div>
+    </div>
+   <footer id="Footer">Developed by Tamim Naser and SMT Emon</footer>
+
     <script src="index.js"></script>
 </body>
 </html>
