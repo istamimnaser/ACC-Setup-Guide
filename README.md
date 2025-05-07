@@ -53,7 +53,6 @@ Each key in the `categories` object can either lead to further `options` (anothe
 
 *   More detailed explanations for each solution.
 *   Ability to filter solutions by car type (if applicable).
-*   User accounts to save common issues or preferred solutions.
 *   Community-driven suggestions or notes on solutions.
 *   Search functionality for issues or solutions.
 
