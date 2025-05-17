@@ -474,6 +474,7 @@ const categories = {
             ]
         }
     },
+    
 
     //low_end
     slow_acceleration: {
@@ -536,7 +537,7 @@ const categories = {
               `Less Front Camber <small style=\"color: ${sidenote_color}\">(closer to 0)</small>`,
               `More Caster`
             ],
-            mechanical: [
+            mechanical_grip: [
               `Reduce Steering Ratio`
             ]
           }
