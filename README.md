@@ -1,84 +1,91 @@
-# AGR ACC Fuel Calculator
+# AGR ACC Setup Guide
 
-![AGR Logo](logo.png)
+![AGR Logo](icons/AGR_logo_v3.png)
 
-A modern web-based fuel calculator built for **Assetto Corsa Competizione (ACC)** drivers and endurance racers.
+An interactive setup troubleshooting assistant for **Assetto Corsa Competizione (ACC)** drivers.
 
-This tool helps sim racers quickly calculate the minimum and recommended fuel needed for races based on lap time, fuel usage, race duration, and formation laps.
+This project helps sim racers diagnose car handling problems and provides categorized setup recommendations for improving car balance, tire behavior, braking, aerodynamics, and stability.
 
-Used by members of the **Bangladesh Sim Racing Community**, league racers, endurance teams, and casual ACC drivers to simplify race preparation and reduce fuel strategy mistakes.
+Used by members of the **Bangladesh Sim Racing Community** to improve setups faster without needing advanced engineering knowledge.
 
 ---
 
 ## 🌐 Live Demo
 
-➡️ https://istamimnaser.github.io/accfuel.github.io/
+➡️ https://istamimnaser.github.io/ACC-Setup-Guide/
 
 ---
 
 # 🏁 Why This Project Exists
 
-ACC races often require manual fuel calculations before a race starts. Many drivers:
+ACC setup tuning can be overwhelming for many drivers.
 
-- Overfuel the car and lose lap time
-- Underfuel and run out before the finish
-- Forget to account for formation laps
-- Struggle calculating endurance race fuel quickly
+Most racers struggle with:
+- Understanding setup terminology
+- Fixing understeer or oversteer
+- Tire overheating issues
+- Brake instability
+- Aerodynamic imbalance
+- Kerb instability
+- Wet or endurance race setup changes
 
-This calculator solves those problems instantly with a clean motorsport-inspired UI.
+This tool simplifies setup troubleshooting into an easy step-by-step flow.
 
 ---
 
 # ✅ Problems It Solves
 
-## ⛽ Accurate Fuel Planning
-Calculates:
-- Minimum fuel required
-- Recommended safe fuel amount
-- Estimated lap count
+## 🛞 Setup Troubleshooting
+Guides users through:
+- Corner entry issues
+- Mid-corner balance
+- Corner exit traction
+- Tire temperature problems
+- Brake locking and instability
+- Straight-line performance
 
 ---
 
-## 🏎 Formation Lap Support
-Allows users to include formation laps automatically in the calculation.
+## 📚 Beginner-Friendly Learning
+Helps newer ACC drivers understand:
+- Mechanical grip
+- Aero balance
+- Tire pressure effects
+- Differential tuning
+- Dampers and suspension
+
+Without needing deep engineering knowledge.
 
 ---
 
-## ⚡ Faster Race Preparation
-Drivers can calculate fuel strategy within seconds before:
-- League races
-- Endurance races
-- Sprint races
-- Practice sessions
+## ⚡ Faster Setup Adjustments
+Instead of searching through forums or YouTube videos, drivers can quickly:
+- Identify the issue
+- Follow the setup flowchart
+- Apply categorized setup changes
 
 ---
 
-## 🌦 Track Weather Integration
-Integrated live weather support for popular racing circuits including:
-- Spa-Francorchamps
-- Suzuka
-- Nürburgring
-- Silverstone
-- Monza
-- Laguna Seca
-- Indianapolis
-- Watkins Glen
-- And more
-
-This helps drivers prepare setups and fuel strategy depending on weather conditions.
+## 🏎 League & Endurance Preparation
+Useful for:
+- League racing
+- Endurance racing
+- Daily races
+- Coaching sessions
+- Community practice events
 
 ---
 
 # 🎨 Features
 
-- Modern AGR motorsport UI
-- Responsive design
-- Live weather API integration
-- Recommended safety fuel calculation
-- Formation lap toggle
-- Mobile-friendly layout
-- Fast and lightweight
-- ACC Setup Guide integration
+- Interactive setup diagnosis system
+- Dynamic category selection
+- Categorized setup solutions
+- Motorsport-inspired UI redesign
+- Mobile responsive design
+- Visual setup flow tracking
+- Quick navigation between issues
+- Integrated Fuel Calculator access
 
 ---
 
@@ -87,39 +94,54 @@ This helps drivers prepare setups and fuel strategy depending on weather conditi
 - HTML5
 - CSS3
 - JavaScript
-- Open-Meteo Weather API
 
 ---
 
 # 👥 Community Usage
 
-This project is actively used by members of the **Bangladesh sim racing community** for:
-- ACC league racing
-- Endurance events
-- Community championships
-- Driver coaching and setup preparation
+This tool is actively used by members of the **Bangladesh sim racing community** to:
+- Learn ACC setup tuning
+- Improve consistency
+- Reduce setup confusion
+- Prepare for competitive league racing
 
-The goal is to make race preparation easier and more accessible for South Asian sim racers.
-
----
-
-
-
+The project was created to make setup knowledge more accessible for South Asian sim racers and beginners entering competitive ACC racing.
 
 
 ---
 
 # 🚀 Future Plans
 
-
-- Pit strategy calculations
-- Tire stint estimation
-- Weather forecasting improvements
-- Team strategy sharing
-- AI Telemetry integration
-
-
-
+- Car-specific setup recommendations
+- Wet setup assistance
+- AI-powered setup suggestions
+- Telemetry integration
+- Community voting system
+- Multi-language support
 
 ---
 
+# 👨‍💻 Developers
+
+Developed by:
+- Tamim Naser
+- SMTEmon
+- AGR (Auto Gaming Rebels)
+
+---
+
+# 🤝 Contributions
+
+Contributions, setup improvements, and racing feedback are welcome.
+
+Feel free to:
+- Fork the repository
+- Improve setup logic
+- Suggest new troubleshooting paths
+- Add support for more simulators
+
+---
+
+# 📄 License
+
+This project is open-source and available under the MIT License.
