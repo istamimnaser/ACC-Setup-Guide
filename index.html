@@ -3,45 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ACC Setup Guide</title>
+    <meta name="description" content="Auto Gaming Rebels ACC setup diagnosis guide.">
+    <title>ACC Setup Guide | Auto Gaming Rebels</title>
     <link rel="icon" href="icons/AGR_logo_v3.png" type="image/png">
-    <link rel = "stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        
-            <div id="Logo"> <img src="icons/AGR_logo_v3.png" alt="icon"></div>
-            <div id="fuelcalc"> <a href="https://istamimnaser.github.io/accfuel.github.io/">Fuel Calculator</a></div>
-         
-       
-    </header>
-    <div>
-        <h1 id="title">ACC Setup Guide</h1>
+    <div class="page-shell">
+        <header class="site-header">
+            <a class="brand" href="#setup-guide" aria-label="Auto Gaming Rebels setup guide home">
+                <span class="brand-mark">
+                    <img id="logo" src="icons/AGR_logo_v3.png" alt="Auto Gaming Rebels logo">
+                </span>
+                <span class="brand-copy">
+                    <strong>Auto Gaming Rebels</strong>
+                    <small>ACC setup laboratory</small>
+                </span>
+            </a>
 
-        <div id = "first_container">
-    
-            <button id = "resetbutton" onclick = "resetpage()" hidden>Look for a new Issue</button>
-    
-            <select id = "primary_selection">
-                <option value = "null" selected disabled hidden>Choose a Category</option>
-                <option value = "corners">Corners</option>
-                <option value = "straights">Straights</option>
-                <option value = "tyres">Tyres</option>
-                <option value = "breaks">Breaks</option>
-                <option value = "race_conditions">Race Conditions</option>
-                <option value = "other">Other</option>
-            </select>
-        </div>
-    
-        <div id = "second_container" hidden>
-        </div>
-    
-        <div id = "solution_container" hidden>
-            
-        </div>
+            <div class="header-actions">
+                <span class="status-pill">
+                    <span class="status-dot" aria-hidden="true"></span>
+                    Setup diagnosis
+                </span>
+                <div id="fuelcalc">
+                    <a href="https://istamimnaser.github.io/accfuel.github.io/" target="_blank" rel="noopener noreferrer">Fuel Calculator</a>
+                </div>
+            </div>
+        </header>
+
+        <section class="hero" aria-labelledby="title">
+            <section class="hero-copy">
+                <p class="eyebrow">Assetto Corsa Competizione / setup diagnosis</p>
+                <h1 id="title">ACC Setup Guide</h1>
+                <p class="hero-text">Pick the symptom, narrow down the car behaviour, and get setup directions grouped by tyres, aero, electronics, dampers, and mechanical grip.</p>
+                <div class="hero-actions" aria-label="Quick actions">
+                    <a class="primary-link" href="#setup-guide">Start diagnosis</a>
+                    <a class="ghost-link" href="https://istamimnaser.github.io/accfuel.github.io/" target="_blank" rel="noopener noreferrer">Open fuel calculator</a>
+                </div>
+            </section>
+
+            <aside class="race-card" aria-label="Guide highlights">
+                <div>
+                    <span class="race-card-label">Flow</span>
+                    <strong>Step by step</strong>
+                </div>
+                <div>
+                    <span class="race-card-label">Output</span>
+                    <strong>Setup changes</strong>
+                </div>
+                <div>
+                    <span class="race-card-label">Focus</span>
+                    <strong>ACC balance</strong>
+                </div>
+            </aside>
+        </section>
+
+        <main id="setup-guide" class="diagnosis-layout">
+            <section class="panel selector-panel" aria-labelledby="diagnosis-title">
+                <div class="panel-heading">
+                    <p class="section-kicker">Issue finder</p>
+                    <h2 id="diagnosis-title">Choose your car behaviour</h2>
+                    <p>Start with the broad category. The guide will reveal the next step or show the setup suggestions.</p>
+                </div>
+
+                <div id="first_container" class="selector-card">
+                    <button id="resetbutton" class="reset-button" type="button" onclick="resetpage()" hidden>Look for a new issue</button>
+
+                    <label class="sr-only" for="primary_selection">Primary category</label>
+                    <select id="primary_selection" class="guide-select">
+                        <option value="null" selected disabled hidden>Choose a category</option>
+                        <option value="corners">Corners</option>
+                        <option value="straights">Straights</option>
+                        <option value="tyres">Tyres</option>
+                        <option value="breaks">Brakes</option>
+                        <option value="race_conditions">Race Conditions</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div id="second_container" class="selector-card dynamic-card" hidden></div>
+            </section>
+
+            <section class="panel guide-panel" aria-labelledby="solutions-title">
+                <div class="panel-heading compact">
+                    <p class="section-kicker">Setup output</p>
+                    <h2 id="solutions-title">Suggested adjustments</h2>
+                    <p>Apply one change at a time, test clean laps, and keep notes before changing the next setting.</p>
+                </div>
+
+                <div id="solution_container" aria-live="polite" hidden></div>
+
+                <div class="empty-state">
+                    <div class="empty-icon" aria-hidden="true">AGR</div>
+                    <p>Select a category to start building the setup path.</p>
+                </div>
+            </section>
+        </main>
+
+        <footer id="Footer" class="footer">
+            <p>Developed by <a href="https://github.com/istamimnaser" target="_blank" rel="noopener noreferrer">Tamim Naser</a> &amp; <a href="https://github.com/SMTEmon" target="_blank" rel="noopener noreferrer">SMTEmon</a></p>
+        </footer>
     </div>
-    <footer id="Footer">Developed by <a href = "https://github.com/istamimnaser">Tamim Naser</a> & <a href = "https://github.com/SMTEmon">SMTEmon</a></footer>
 
-    <script src="index.js"></script>
+    <script src="index.js" defer></script>
 </body>
 </html>
